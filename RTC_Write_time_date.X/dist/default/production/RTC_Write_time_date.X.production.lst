@@ -1,0 +1,979 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.40 build -251452761 
+                                                                                               Tue May 23 17:17:49 2017
+
+Microchip Technology Omniscient Code Generator v1.40 (Free mode) build 201612010151
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     7                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    16                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    17                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    18  0000                     
+    19                           ; Version 1.40
+    20                           ; Generated 01/12/2016 GMT
+    21                           ; 
+    22                           ; Copyright © 2016, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    23                           ; All rights reserved.
+    24                           ; 
+    25                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    26                           ; 
+    27                           ; Redistribution and use in source and binary forms, with or without modification, are
+    28                           ; permitted provided that the following conditions are met:
+    29                           ; 
+    30                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    31                           ;        conditions and the following disclaimer.
+    32                           ; 
+    33                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    34                           ;        of conditions and the following disclaimer in the documentation and/or other
+    35                           ;        materials provided with the distribution.
+    36                           ; 
+    37                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    38                           ;        software without specific prior written permission.
+    39                           ; 
+    40                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    41                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    42                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    43                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    44                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    45                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    46                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    47                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    48                           ; 
+    49                           ; 
+    50                           ; Code-generator required, PIC18F4550 Definitions
+    51                           ; 
+    52                           ; SFR Addresses
+    53  0000                     _OSCCON	set	4051
+    54  0000                     _SSPADD	set	4040
+    55  0000                     _SSPBUF	set	4041
+    56  0000                     _SSPCON1	set	4038
+    57  0000                     _SSPCON2	set	4037
+    58  0000                     _SSPCON2bits	set	4037
+    59  0000                     _SSPSTAT	set	4039
+    60  0000                     _SSPSTATbits	set	4039
+    61  0000                     _ACKDT	set	32301
+    62  0000                     _ACKEN	set	32300
+    63  0000                     _ACKSTAT	set	32302
+    64  0000                     _PEN	set	32298
+    65  0000                     _RCEN	set	32299
+    66  0000                     _RSEN	set	32297
+    67  0000                     _SSPIE	set	31979
+    68  0000                     _SSPIF	set	31987
+    69  0000                     _TRISB0	set	31896
+    70  0000                     _TRISB1	set	31897
+    71                           
+    72                           ; #config settings
+    73  0000                     
+    74                           	psect	cinit
+    75  007ECE                     __pcinit:
+    76                           	opt stack 0
+    77  007ECE                     start_initialization:
+    78                           	opt stack 0
+    79  007ECE                     __initialization:
+    80                           	opt stack 0
+    81  007ECE                     end_of_initialization:
+    82                           	opt stack 0
+    83  007ECE                     __end_of__initialization:
+    84                           	opt stack 0
+    85  007ECE  0100               	movlb	0
+    86  007ED0  EFDD  F03F         	goto	_main	;jump to C main() function
+    87                           
+    88                           	psect	cstackCOMRAM
+    89  000001                     __pcstackCOMRAM:
+    90                           	opt stack 0
+    91  000001                     I2C_Write@data:
+    92                           	opt stack 0
+    93  000001                     MSdelay@val:
+    94                           	opt stack 0
+    95                           
+    96                           ; 2 bytes @ 0x0
+    97  000001                     	ds	1
+    98  000002                     I2C_Start@slave_write_address:
+    99                           	opt stack 0
+   100                           
+   101                           ; 1 bytes @ 0x1
+   102  000002                     	ds	1
+   103  000003                     RTC_Clock_Write@min:
+   104                           	opt stack 0
+   105  000003                     RTC_Calendar_Write@date:
+   106                           	opt stack 0
+   107  000003                     MSdelay@i:
+   108                           	opt stack 0
+   109                           
+   110                           ; 2 bytes @ 0x2
+   111  000003                     	ds	1
+   112  000004                     RTC_Clock_Write@hour:
+   113                           	opt stack 0
+   114  000004                     RTC_Calendar_Write@month:
+   115                           	opt stack 0
+   116                           
+   117                           ; 1 bytes @ 0x3
+   118  000004                     	ds	1
+   119  000005                     RTC_Clock_Write@AM_PM:
+   120                           	opt stack 0
+   121  000005                     RTC_Calendar_Write@year:
+   122                           	opt stack 0
+   123  000005                     MSdelay@j:
+   124                           	opt stack 0
+   125                           
+   126                           ; 2 bytes @ 0x4
+   127  000005                     	ds	1
+   128  000006                     RTC_Clock_Write@sec:
+   129                           	opt stack 0
+   130  000006                     RTC_Calendar_Write@day:
+   131                           	opt stack 0
+   132                           
+   133                           ; 1 bytes @ 0x5
+   134  000006                     	ds	1
+   135  000007                     
+   136                           ; 1 bytes @ 0x6
+   137 ;;
+   138 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   139 ;;
+   140 ;; *************** function _main *****************
+   141 ;; Defined at:
+   142 ;;		line 41 in file "Write_time_date.c"
+   143 ;; Parameters:    Size  Location     Type
+   144 ;;		None
+   145 ;; Auto vars:     Size  Location     Type
+   146 ;;		None
+   147 ;; Return value:  Size  Location     Type
+   148 ;;                  1    wreg      void 
+   149 ;; Registers used:
+   150 ;;		wreg, status,2, status,0, cstack
+   151 ;; Tracked objects:
+   152 ;;		On entry : 0/0
+   153 ;;		On exit  : 0/0
+   154 ;;		Unchanged: 0/0
+   155 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   156 ;;      Params:         0       0       0       0       0       0       0       0       0
+   157 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   158 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   159 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   160 ;;Total ram usage:        0 bytes
+   161 ;; Hardware stack levels required when called:    4
+   162 ;; This function calls:
+   163 ;;		_I2C_Init
+   164 ;;		_MSdelay
+   165 ;;		_RTC_Calendar_Write
+   166 ;;		_RTC_Clock_Write
+   167 ;; This function is called by:
+   168 ;;		Startup code after reset
+   169 ;; This function uses a non-reentrant model
+   170 ;;
+   171                           
+   172                           	psect	text0
+   173  007FBA                     __ptext0:
+   174                           	opt stack 0
+   175  007FBA                     _main:
+   176                           	opt stack 27
+   177                           
+   178                           ;Write_time_date.c: 43: OSCCON=0x72;
+   179                           
+   180                           ;incstack = 0
+   181  007FBA  0E72               	movlw	114
+   182  007FBC  6ED3               	movwf	4051,c	;volatile
+   183                           
+   184                           ;Write_time_date.c: 45: MSdelay(50);
+   185  007FBE  0E00               	movlw	0
+   186  007FC0  6E02               	movwf	MSdelay@val+1,c
+   187  007FC2  0E32               	movlw	50
+   188  007FC4  6E01               	movwf	MSdelay@val,c
+   189  007FC6  ECC2  F03F         	call	_MSdelay	;wreg free
+   190                           
+   191                           ;Write_time_date.c: 46: I2C_Init();
+   192  007FCA  EC89  F03F         	call	_I2C_Init	;wreg free
+   193                           
+   194                           ;Write_time_date.c: 47: MSdelay(10);
+   195  007FCE  0E00               	movlw	0
+   196  007FD0  6E02               	movwf	MSdelay@val+1,c
+   197  007FD2  0E0A               	movlw	10
+   198  007FD4  6E01               	movwf	MSdelay@val,c
+   199  007FD6  ECC2  F03F         	call	_MSdelay	;wreg free
+   200                           
+   201                           ;Write_time_date.c: 48: RTC_Clock_Write(0x00, 0x58, 0x11, 0x60);
+   202  007FDA  0E58               	movlw	88
+   203  007FDC  6E03               	movwf	RTC_Clock_Write@min,c
+   204  007FDE  0E11               	movlw	17
+   205  007FE0  6E04               	movwf	RTC_Clock_Write@hour,c
+   206  007FE2  0E60               	movlw	96
+   207  007FE4  6E05               	movwf	RTC_Clock_Write@AM_PM,c
+   208  007FE6  0E00               	movlw	0
+   209  007FE8  ECAC  F03F         	call	_RTC_Clock_Write
+   210                           
+   211                           ;Write_time_date.c: 49: RTC_Calendar_Write(0x1,0x20,0x02,0x17);
+   212  007FEC  0E20               	movlw	32
+   213  007FEE  6E03               	movwf	RTC_Calendar_Write@date,c
+   214  007FF0  0E02               	movlw	2
+   215  007FF2  6E04               	movwf	RTC_Calendar_Write@month,c
+   216  007FF4  0E17               	movlw	23
+   217  007FF6  6E05               	movwf	RTC_Calendar_Write@year,c
+   218  007FF8  0E01               	movlw	1
+   219  007FFA  EC96  F03F         	call	_RTC_Calendar_Write
+   220  007FFE                     l21:
+   221  007FFE  D7FF               	goto	l21
+   222  008000                     __end_of_main:
+   223                           	opt stack 0
+   224                           
+   225 ;; *************** function _RTC_Clock_Write *****************
+   226 ;; Defined at:
+   227 ;;		line 20 in file "Write_time_date.c"
+   228 ;; Parameters:    Size  Location     Type
+   229 ;;  sec             1    wreg     unsigned char 
+   230 ;;  min             1    2[COMRAM] unsigned char 
+   231 ;;  hour            1    3[COMRAM] unsigned char 
+   232 ;;  AM_PM           1    4[COMRAM] unsigned char 
+   233 ;; Auto vars:     Size  Location     Type
+   234 ;;  sec             1    5[COMRAM] unsigned char 
+   235 ;; Return value:  Size  Location     Type
+   236 ;;                  1    wreg      void 
+   237 ;; Registers used:
+   238 ;;		wreg, status,2, status,0, cstack
+   239 ;; Tracked objects:
+   240 ;;		On entry : 0/0
+   241 ;;		On exit  : 0/0
+   242 ;;		Unchanged: 0/0
+   243 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   244 ;;      Params:         3       0       0       0       0       0       0       0       0
+   245 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   246 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   247 ;;      Totals:         4       0       0       0       0       0       0       0       0
+   248 ;;Total ram usage:        4 bytes
+   249 ;; Hardware stack levels used:    1
+   250 ;; Hardware stack levels required when called:    3
+   251 ;; This function calls:
+   252 ;;		_I2C_Start
+   253 ;;		_I2C_Stop
+   254 ;;		_I2C_Write
+   255 ;; This function is called by:
+   256 ;;		_main
+   257 ;; This function uses a non-reentrant model
+   258 ;;
+   259                           
+   260                           	psect	text1
+   261  007F58                     __ptext1:
+   262                           	opt stack 0
+   263  007F58                     _RTC_Clock_Write:
+   264                           	opt stack 27
+   265                           
+   266                           ;incstack = 0
+   267                           ;RTC_Clock_Write@sec stored from wreg
+   268  007F58  6E06               	movwf	RTC_Clock_Write@sec,c
+   269                           
+   270                           ;Write_time_date.c: 22: hour = (hour | AM_PM);
+   271  007F5A  5004               	movf	RTC_Clock_Write@hour,w,c
+   272  007F5C  1005               	iorwf	RTC_Clock_Write@AM_PM,w,c
+   273  007F5E  6E04               	movwf	RTC_Clock_Write@hour,c
+   274                           
+   275                           ;Write_time_date.c: 23: I2C_Start(0xD0);
+   276  007F60  0ED0               	movlw	208
+   277  007F62  EC7E  F03F         	call	_I2C_Start
+   278                           
+   279                           ;Write_time_date.c: 24: I2C_Write(0);
+   280  007F66  0E00               	movlw	0
+   281  007F68  EC73  F03F         	call	_I2C_Write
+   282                           
+   283                           ;Write_time_date.c: 25: I2C_Write(sec);
+   284  007F6C  5006               	movf	RTC_Clock_Write@sec,w,c
+   285  007F6E  EC73  F03F         	call	_I2C_Write
+   286                           
+   287                           ;Write_time_date.c: 26: I2C_Write(min);
+   288  007F72  5003               	movf	RTC_Clock_Write@min,w,c
+   289  007F74  EC73  F03F         	call	_I2C_Write
+   290                           
+   291                           ;Write_time_date.c: 27: I2C_Write(hour);
+   292  007F78  5004               	movf	RTC_Clock_Write@hour,w,c
+   293  007F7A  EC73  F03F         	call	_I2C_Write
+   294                           
+   295                           ;Write_time_date.c: 28: I2C_Stop();
+   296  007F7E  EC6E  F03F         	call	_I2C_Stop	;wreg free
+   297  007F82  0012               	return		;funcret
+   298  007F84                     __end_of_RTC_Clock_Write:
+   299                           	opt stack 0
+   300                           
+   301 ;; *************** function _RTC_Calendar_Write *****************
+   302 ;; Defined at:
+   303 ;;		line 31 in file "Write_time_date.c"
+   304 ;; Parameters:    Size  Location     Type
+   305 ;;  day             1    wreg     unsigned char 
+   306 ;;  date            1    2[COMRAM] unsigned char 
+   307 ;;  month           1    3[COMRAM] unsigned char 
+   308 ;;  year            1    4[COMRAM] unsigned char 
+   309 ;; Auto vars:     Size  Location     Type
+   310 ;;  day             1    5[COMRAM] unsigned char 
+   311 ;; Return value:  Size  Location     Type
+   312 ;;                  1    wreg      void 
+   313 ;; Registers used:
+   314 ;;		wreg, status,2, cstack
+   315 ;; Tracked objects:
+   316 ;;		On entry : 0/0
+   317 ;;		On exit  : 0/0
+   318 ;;		Unchanged: 0/0
+   319 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   320 ;;      Params:         3       0       0       0       0       0       0       0       0
+   321 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   322 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   323 ;;      Totals:         4       0       0       0       0       0       0       0       0
+   324 ;;Total ram usage:        4 bytes
+   325 ;; Hardware stack levels used:    1
+   326 ;; Hardware stack levels required when called:    3
+   327 ;; This function calls:
+   328 ;;		_I2C_Start
+   329 ;;		_I2C_Stop
+   330 ;;		_I2C_Write
+   331 ;; This function is called by:
+   332 ;;		_main
+   333 ;; This function uses a non-reentrant model
+   334 ;;
+   335                           
+   336                           	psect	text2
+   337  007F2C                     __ptext2:
+   338                           	opt stack 0
+   339  007F2C                     _RTC_Calendar_Write:
+   340                           	opt stack 27
+   341                           
+   342                           ;incstack = 0
+   343                           ;RTC_Calendar_Write@day stored from wreg
+   344  007F2C  6E06               	movwf	RTC_Calendar_Write@day,c
+   345                           
+   346                           ;Write_time_date.c: 33: I2C_Start(0xD0);
+   347  007F2E  0ED0               	movlw	208
+   348  007F30  EC7E  F03F         	call	_I2C_Start
+   349                           
+   350                           ;Write_time_date.c: 34: I2C_Write(3);
+   351  007F34  0E03               	movlw	3
+   352  007F36  EC73  F03F         	call	_I2C_Write
+   353                           
+   354                           ;Write_time_date.c: 35: I2C_Write(day);
+   355  007F3A  5006               	movf	RTC_Calendar_Write@day,w,c
+   356  007F3C  EC73  F03F         	call	_I2C_Write
+   357                           
+   358                           ;Write_time_date.c: 36: I2C_Write(date);
+   359  007F40  5003               	movf	RTC_Calendar_Write@date,w,c
+   360  007F42  EC73  F03F         	call	_I2C_Write
+   361                           
+   362                           ;Write_time_date.c: 37: I2C_Write(month);
+   363  007F46  5004               	movf	RTC_Calendar_Write@month,w,c
+   364  007F48  EC73  F03F         	call	_I2C_Write
+   365                           
+   366                           ;Write_time_date.c: 38: I2C_Write(year);
+   367  007F4C  5005               	movf	RTC_Calendar_Write@year,w,c
+   368  007F4E  EC73  F03F         	call	_I2C_Write
+   369                           
+   370                           ;Write_time_date.c: 39: I2C_Stop();
+   371  007F52  EC6E  F03F         	call	_I2C_Stop	;wreg free
+   372  007F56  0012               	return		;funcret
+   373  007F58                     __end_of_RTC_Calendar_Write:
+   374                           	opt stack 0
+   375                           
+   376 ;; *************** function _I2C_Stop *****************
+   377 ;; Defined at:
+   378 ;;		line 89 in file "PIC18F4550_I2C_Source_File.c"
+   379 ;; Parameters:    Size  Location     Type
+   380 ;;		None
+   381 ;; Auto vars:     Size  Location     Type
+   382 ;;		None
+   383 ;; Return value:  Size  Location     Type
+   384 ;;                  1    wreg      unsigned char 
+   385 ;; Registers used:
+   386 ;;		wreg
+   387 ;; Tracked objects:
+   388 ;;		On entry : 0/0
+   389 ;;		On exit  : 0/0
+   390 ;;		Unchanged: 0/0
+   391 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   392 ;;      Params:         0       0       0       0       0       0       0       0       0
+   393 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   394 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   395 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   396 ;;Total ram usage:        0 bytes
+   397 ;; Hardware stack levels used:    1
+   398 ;; This function calls:
+   399 ;;		Nothing
+   400 ;; This function is called by:
+   401 ;;		_RTC_Clock_Write
+   402 ;;		_RTC_Calendar_Write
+   403 ;;		_I2C_Start_Wait
+   404 ;; This function uses a non-reentrant model
+   405 ;;
+   406                           
+   407                           	psect	text3
+   408  007EDC                     __ptext3:
+   409                           	opt stack 0
+   410  007EDC                     _I2C_Stop:
+   411                           	opt stack 29
+   412                           
+   413                           ;PIC18F4550_I2C_Source_File.c: 91: PEN=1;
+   414                           
+   415                           ;incstack = 0
+   416  007EDC  84C5               	bsf	4037,2,c	;volatile
+   417  007EDE                     l123:
+   418  007EDE  B4C5               	btfsc	4037,2,c	;volatile
+   419  007EE0  D7FE               	goto	l123
+   420                           
+   421                           ;PIC18F4550_I2C_Source_File.c: 93: if(!SSPSTATbits.P);
+   422  007EE2  50C7               	movf	4039,w,c	;volatile
+   423  007EE4  0012               	return	
+   424  007EE6                     __end_of_I2C_Stop:
+   425                           	opt stack 0
+   426                           
+   427 ;; *************** function _I2C_Start *****************
+   428 ;; Defined at:
+   429 ;;		line 65 in file "PIC18F4550_I2C_Source_File.c"
+   430 ;; Parameters:    Size  Location     Type
+   431 ;;  slave_write_    1    wreg     unsigned char 
+   432 ;; Auto vars:     Size  Location     Type
+   433 ;;  slave_write_    1    1[COMRAM] unsigned char 
+   434 ;; Return value:  Size  Location     Type
+   435 ;;                  1    wreg      unsigned char 
+   436 ;; Registers used:
+   437 ;;		wreg, status,2, cstack
+   438 ;; Tracked objects:
+   439 ;;		On entry : 0/0
+   440 ;;		On exit  : 0/0
+   441 ;;		Unchanged: 0/0
+   442 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   443 ;;      Params:         0       0       0       0       0       0       0       0       0
+   444 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   445 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   446 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   447 ;;Total ram usage:        1 bytes
+   448 ;; Hardware stack levels used:    1
+   449 ;; Hardware stack levels required when called:    2
+   450 ;; This function calls:
+   451 ;;		_I2C_Write
+   452 ;; This function is called by:
+   453 ;;		_RTC_Clock_Write
+   454 ;;		_RTC_Calendar_Write
+   455 ;; This function uses a non-reentrant model
+   456 ;;
+   457                           
+   458                           	psect	text4
+   459  007EFC                     __ptext4:
+   460                           	opt stack 0
+   461  007EFC                     _I2C_Start:
+   462                           	opt stack 27
+   463                           
+   464                           ;incstack = 0
+   465                           ;I2C_Start@slave_write_address stored from wreg
+   466  007EFC  6E02               	movwf	I2C_Start@slave_write_address,c
+   467                           
+   468                           ;PIC18F4550_I2C_Source_File.c: 67: SSPCON2bits.SEN=1;
+   469  007EFE  80C5               	bsf	4037,0,c	;volatile
+   470  007F00                     l107:
+   471  007F00  B0C5               	btfsc	4037,0,c	;volatile
+   472  007F02  D7FE               	goto	l107
+   473                           
+   474                           ;PIC18F4550_I2C_Source_File.c: 69: SSPIF=0;
+   475  007F04  969E               	bcf	3998,3,c	;volatile
+   476                           
+   477                           ;PIC18F4550_I2C_Source_File.c: 70: if(!SSPSTATbits.S)
+   478  007F06  A6C7               	btfss	4039,3,c	;volatile
+   479  007F08  0012               	return	
+   480                           
+   481                           ;PIC18F4550_I2C_Source_File.c: 72: return (I2C_Write(slave_write_address));
+   482                           ;	Return value of _I2C_Start is never used
+   483                           
+   484                           ;PIC18F4550_I2C_Source_File.c: 71: return 0;
+   485                           ;	Return value of _I2C_Start is never used
+   486  007F0A  5002               	movf	I2C_Start@slave_write_address,w,c
+   487  007F0C  EC73  F03F         	call	_I2C_Write
+   488  007F10  0012               	return	
+   489  007F12                     __end_of_I2C_Start:
+   490                           	opt stack 0
+   491                           
+   492 ;; *************** function _I2C_Write *****************
+   493 ;; Defined at:
+   494 ;;		line 97 in file "PIC18F4550_I2C_Source_File.c"
+   495 ;; Parameters:    Size  Location     Type
+   496 ;;  data            1    wreg     unsigned char 
+   497 ;; Auto vars:     Size  Location     Type
+   498 ;;  data            1    0[COMRAM] unsigned char 
+   499 ;; Return value:  Size  Location     Type
+   500 ;;                  1    wreg      unsigned char 
+   501 ;; Registers used:
+   502 ;;		wreg, cstack
+   503 ;; Tracked objects:
+   504 ;;		On entry : 0/0
+   505 ;;		On exit  : 0/0
+   506 ;;		Unchanged: 0/0
+   507 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   508 ;;      Params:         0       0       0       0       0       0       0       0       0
+   509 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   510 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   511 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   512 ;;Total ram usage:        1 bytes
+   513 ;; Hardware stack levels used:    1
+   514 ;; Hardware stack levels required when called:    1
+   515 ;; This function calls:
+   516 ;;		_I2C_Ready
+   517 ;; This function is called by:
+   518 ;;		_RTC_Clock_Write
+   519 ;;		_RTC_Calendar_Write
+   520 ;;		_I2C_Start
+   521 ;;		_I2C_Start_Wait
+   522 ;;		_I2C_Repeated_Start
+   523 ;; This function uses a non-reentrant model
+   524 ;;
+   525                           
+   526                           	psect	text5
+   527  007EE6                     __ptext5:
+   528                           	opt stack 0
+   529  007EE6                     _I2C_Write:
+   530                           	opt stack 28
+   531                           
+   532                           ;incstack = 0
+   533                           ;I2C_Write@data stored from wreg
+   534  007EE6  6E01               	movwf	I2C_Write@data,c
+   535                           
+   536                           ;PIC18F4550_I2C_Source_File.c: 99: SSPBUF=data;
+   537  007EE8  C001  FFC9         	movff	I2C_Write@data,4041	;volatile
+   538                           
+   539                           ;PIC18F4550_I2C_Source_File.c: 100: I2C_Ready();
+   540  007EEC  EC6A  F03F         	call	_I2C_Ready	;wreg free
+   541                           
+   542                           ;PIC18F4550_I2C_Source_File.c: 101: if (ACKSTAT)
+   543  007EF0  ACC5               	btfss	4037,6,c	;volatile
+   544  007EF2  D002               	goto	l756
+   545                           
+   546                           ;PIC18F4550_I2C_Source_File.c: 102: return 1;
+   547  007EF4  0E01               	movlw	1
+   548  007EF6  0012               	return	
+   549  007EF8                     l756:
+   550                           
+   551                           ;PIC18F4550_I2C_Source_File.c: 103: else
+   552                           ;PIC18F4550_I2C_Source_File.c: 104: return 2;
+   553  007EF8  0E02               	movlw	2
+   554  007EFA  0012               	return	
+   555  007EFC                     __end_of_I2C_Write:
+   556                           	opt stack 0
+   557                           
+   558 ;; *************** function _I2C_Ready *****************
+   559 ;; Defined at:
+   560 ;;		line 40 in file "PIC18F4550_I2C_Source_File.c"
+   561 ;; Parameters:    Size  Location     Type
+   562 ;;		None
+   563 ;; Auto vars:     Size  Location     Type
+   564 ;;		None
+   565 ;; Return value:  Size  Location     Type
+   566 ;;                  1    wreg      void 
+   567 ;; Registers used:
+   568 ;;		None
+   569 ;; Tracked objects:
+   570 ;;		On entry : 0/0
+   571 ;;		On exit  : 0/0
+   572 ;;		Unchanged: 0/0
+   573 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   574 ;;      Params:         0       0       0       0       0       0       0       0       0
+   575 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   576 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   577 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   578 ;;Total ram usage:        0 bytes
+   579 ;; Hardware stack levels used:    1
+   580 ;; This function calls:
+   581 ;;		Nothing
+   582 ;; This function is called by:
+   583 ;;		_I2C_Write
+   584 ;;		_I2C_Read
+   585 ;; This function uses a non-reentrant model
+   586 ;;
+   587                           
+   588                           	psect	text6
+   589  007ED4                     __ptext6:
+   590                           	opt stack 0
+   591  007ED4                     _I2C_Ready:
+   592                           	opt stack 28
+   593  007ED4                     l90:
+   594  007ED4  A69E               	btfss	3998,3,c	;volatile
+   595  007ED6  D7FE               	goto	l90
+   596                           
+   597                           ;PIC18F4550_I2C_Source_File.c: 43: SSPIF=0;
+   598  007ED8  969E               	bcf	3998,3,c	;volatile
+   599  007EDA  0012               	return		;funcret
+   600  007EDC                     __end_of_I2C_Ready:
+   601                           	opt stack 0
+   602                           
+   603 ;; *************** function _MSdelay *****************
+   604 ;; Defined at:
+   605 ;;		line 53 in file "Write_time_date.c"
+   606 ;; Parameters:    Size  Location     Type
+   607 ;;  val             2    0[COMRAM] unsigned int 
+   608 ;; Auto vars:     Size  Location     Type
+   609 ;;  j               2    4[COMRAM] unsigned int 
+   610 ;;  i               2    2[COMRAM] unsigned int 
+   611 ;; Return value:  Size  Location     Type
+   612 ;;                  1    wreg      void 
+   613 ;; Registers used:
+   614 ;;		wreg, status,2, status,0
+   615 ;; Tracked objects:
+   616 ;;		On entry : 0/0
+   617 ;;		On exit  : 0/0
+   618 ;;		Unchanged: 0/0
+   619 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   620 ;;      Params:         2       0       0       0       0       0       0       0       0
+   621 ;;      Locals:         4       0       0       0       0       0       0       0       0
+   622 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   623 ;;      Totals:         6       0       0       0       0       0       0       0       0
+   624 ;;Total ram usage:        6 bytes
+   625 ;; Hardware stack levels used:    1
+   626 ;; This function calls:
+   627 ;;		Nothing
+   628 ;; This function is called by:
+   629 ;;		_main
+   630 ;; This function uses a non-reentrant model
+   631 ;;
+   632                           
+   633                           	psect	text7
+   634  007F84                     __ptext7:
+   635                           	opt stack 0
+   636  007F84                     _MSdelay:
+   637                           	opt stack 30
+   638                           
+   639                           ;Write_time_date.c: 55: unsigned int i,j;
+   640                           ;Write_time_date.c: 56: for(i=0;i<val;i++)
+   641                           
+   642                           ;incstack = 0
+   643  007F84  0E00               	movlw	0
+   644  007F86  6E04               	movwf	MSdelay@i+1,c
+   645  007F88  0E00               	movlw	0
+   646  007F8A  6E03               	movwf	MSdelay@i,c
+   647  007F8C  D00F               	goto	l914
+   648  007F8E                     l902:
+   649                           
+   650                           ;Write_time_date.c: 57: for(j=0;j<165;j++);
+   651  007F8E  0E00               	movlw	0
+   652  007F90  6E06               	movwf	MSdelay@j+1,c
+   653  007F92  0E00               	movlw	0
+   654  007F94  6E05               	movwf	MSdelay@j,c
+   655  007F96                     l904:
+   656  007F96  5006               	movf	MSdelay@j+1,w,c
+   657  007F98  E107               	bnz	l912
+   658  007F9A  0EA5               	movlw	165
+   659  007F9C  5C05               	subwf	MSdelay@j,w,c
+   660  007F9E  B0D8               	btfsc	status,0,c
+   661  007FA0  D003               	goto	l912
+   662  007FA2  4A05               	infsnz	MSdelay@j,f,c
+   663  007FA4  2A06               	incf	MSdelay@j+1,f,c
+   664  007FA6  D7F7               	goto	l904
+   665  007FA8                     l912:
+   666  007FA8  4A03               	infsnz	MSdelay@i,f,c
+   667  007FAA  2A04               	incf	MSdelay@i+1,f,c
+   668  007FAC                     l914:
+   669  007FAC  5001               	movf	MSdelay@val,w,c
+   670  007FAE  5C03               	subwf	MSdelay@i,w,c
+   671  007FB0  5002               	movf	MSdelay@val+1,w,c
+   672  007FB2  5804               	subwfb	MSdelay@i+1,w,c
+   673  007FB4  B0D8               	btfsc	status,0,c
+   674  007FB6  0012               	return	
+   675  007FB8  D7EA               	goto	l902
+   676  007FBA                     __end_of_MSdelay:
+   677                           	opt stack 0
+   678                           status	equ	0xFD8
+   679                           
+   680 ;; *************** function _I2C_Init *****************
+   681 ;; Defined at:
+   682 ;;		line 26 in file "PIC18F4550_I2C_Source_File.c"
+   683 ;; Parameters:    Size  Location     Type
+   684 ;;		None
+   685 ;; Auto vars:     Size  Location     Type
+   686 ;;		None
+   687 ;; Return value:  Size  Location     Type
+   688 ;;                  1    wreg      void 
+   689 ;; Registers used:
+   690 ;;		wreg, status,2
+   691 ;; Tracked objects:
+   692 ;;		On entry : 0/0
+   693 ;;		On exit  : 0/0
+   694 ;;		Unchanged: 0/0
+   695 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   696 ;;      Params:         0       0       0       0       0       0       0       0       0
+   697 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   698 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   699 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   700 ;;Total ram usage:        0 bytes
+   701 ;; Hardware stack levels used:    1
+   702 ;; This function calls:
+   703 ;;		Nothing
+   704 ;; This function is called by:
+   705 ;;		_main
+   706 ;; This function uses a non-reentrant model
+   707 ;;
+   708                           
+   709                           	psect	text8
+   710  007F12                     __ptext8:
+   711                           	opt stack 0
+   712  007F12                     _I2C_Init:
+   713                           	opt stack 30
+   714                           
+   715                           ;PIC18F4550_I2C_Source_File.c: 28: TRISB0=1;
+   716                           
+   717                           ;incstack = 0
+   718  007F12  8093               	bsf	3987,0,c	;volatile
+   719                           
+   720                           ;PIC18F4550_I2C_Source_File.c: 29: TRISB1=1;
+   721  007F14  8293               	bsf	3987,1,c	;volatile
+   722                           
+   723                           ;PIC18F4550_I2C_Source_File.c: 30: SSPSTAT=80;
+   724  007F16  0E50               	movlw	80
+   725  007F18  6EC7               	movwf	4039,c	;volatile
+   726                           
+   727                           ;PIC18F4550_I2C_Source_File.c: 31: SSPCON1=0x28;
+   728  007F1A  0E28               	movlw	40
+   729  007F1C  6EC6               	movwf	4038,c	;volatile
+   730                           
+   731                           ;PIC18F4550_I2C_Source_File.c: 33: SSPCON2=0;
+   732  007F1E  0E00               	movlw	0
+   733  007F20  6EC5               	movwf	4037,c	;volatile
+   734                           
+   735                           ;PIC18F4550_I2C_Source_File.c: 34: SSPADD=((8000000/(4*100000))-1);
+   736  007F22  0E13               	movlw	19
+   737  007F24  6EC8               	movwf	4040,c	;volatile
+   738                           
+   739                           ;PIC18F4550_I2C_Source_File.c: 35: SSPIE=1;
+   740  007F26  869D               	bsf	3997,3,c	;volatile
+   741                           
+   742                           ;PIC18F4550_I2C_Source_File.c: 36: SSPIF=0;
+   743  007F28  969E               	bcf	3998,3,c	;volatile
+   744  007F2A  0012               	return		;funcret
+   745  007F2C                     __end_of_I2C_Init:
+   746                           	opt stack 0
+   747  0000                     status	equ	0xFD8
+   748                           status	equ	0xFD8
+   749                           
+   750                           	psect	rparam
+   751  0000                     status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      6       6
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_MSdelay
+    _main->_RTC_Calendar_Write
+    _main->_RTC_Clock_Write
+    _RTC_Clock_Write->_I2C_Start
+    _RTC_Calendar_Write->_I2C_Start
+    _I2C_Start->_I2C_Write
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     725
+                           _I2C_Init
+                            _MSdelay
+                 _RTC_Calendar_Write
+                    _RTC_Clock_Write
+ ---------------------------------------------------------------------------------
+ (1) _RTC_Clock_Write                                      4     1      3     285
+                                              2 COMRAM     4     1      3
+                          _I2C_Start
+                           _I2C_Stop
+                          _I2C_Write
+ ---------------------------------------------------------------------------------
+ (1) _RTC_Calendar_Write                                   4     1      3     262
+                                              2 COMRAM     4     1      3
+                          _I2C_Start
+                           _I2C_Stop
+                          _I2C_Write
+ ---------------------------------------------------------------------------------
+ (2) _I2C_Stop                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _I2C_Start                                            1     1      0      30
+                                              1 COMRAM     1     1      0
+                          _I2C_Write
+ ---------------------------------------------------------------------------------
+ (2) _I2C_Write                                            1     1      0      15
+                                              0 COMRAM     1     1      0
+                          _I2C_Ready
+ ---------------------------------------------------------------------------------
+ (3) _I2C_Ready                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _MSdelay                                              6     4      2     178
+                                              0 COMRAM     6     4      2
+ ---------------------------------------------------------------------------------
+ (1) _I2C_Init                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _I2C_Init
+   _MSdelay
+   _RTC_Calendar_Write
+     _I2C_Start
+       _I2C_Write
+         _I2C_Ready
+     _I2C_Stop
+     _I2C_Write
+       _I2C_Ready
+   _RTC_Clock_Write
+     _I2C_Start
+       _I2C_Write
+         _I2C_Ready
+     _I2C_Stop
+     _I2C_Write
+       _I2C_Ready
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      6       6       1        6.3%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.40 build -251452761 
+Symbol Table                                                                                   Tue May 23 17:17:49 2017
+
+          __size_of_I2C_Ready 0008            __size_of_I2C_Start 0016                   _SSPSTATbits 000FC7  
+          __size_of_I2C_Write 0016                            l21 7FFE                            l90 7ED4  
+                 __CFG_BOR$ON 000000                   __CFG_BORV$3 000000                  __CFG_CP0$OFF 000000  
+                __CFG_CP1$OFF 000000                  __CFG_CP2$OFF 000000                  __CFG_CP3$OFF 000000  
+                         l107 7F00                           l123 7EDE                           l902 7F8E  
+                         l912 7FA8                           l904 7F96                           l914 7FAC  
+                         l756 7EF8                  __CFG_CPB$OFF 000000                           _PEN 007E2A  
+                __CFG_CPD$OFF 000000                  __CFG_LVP$OFF 000000                  __CFG_WDT$OFF 000000  
+                        _RCEN 007E2B                          _RSEN 007E29                          _main 7FBA  
+            __end_of_I2C_Init 7F2C              __end_of_I2C_Stop 7EE6                          start 0000  
+             __end_of_MSdelay 7FBA                 __CFG_IESO$OFF 000000                  ___param_bank 000000  
+               __CFG_PLLDIV$1 000000                __CFG_CCP2MX$ON 000000                         ?_main 0001  
+                       _ACKEN 007E2C                         _ACKDT 007E2D                 __CFG_USBDIV$1 000000  
+                       _SSPIE 007CEB                         _SSPIF 007CF3                 __CFG_PWRT$OFF 000000  
+               __CFG_WRT0$OFF 000000                 __CFG_WRT1$OFF 000000                 __CFG_WRT2$OFF 000000  
+               __CFG_WRT3$OFF 000000                __CFG_EBTR0$OFF 000000                __CFG_FCMEN$OFF 000000  
+              __CFG_EBTR1$OFF 000000                __CFG_EBTR2$OFF 000000                __CFG_EBTR3$OFF 000000  
+               __CFG_WRTB$OFF 000000                 __CFG_WRTC$OFF 000000                 __CFG_WRTD$OFF 000000  
+              __CFG_EBTRB$OFF 000000             __end_of_I2C_Ready 7EDC             __end_of_I2C_Start 7F12  
+           __end_of_I2C_Write 7EFC                         status 000FD8                __CFG_ICPRT$OFF 000000  
+              __CFG_MCLRE$OFF 000000               __initialization 7ECE                  __end_of_main 8000  
+     RTC_Calendar_Write@month 0004                        ??_main 0007                 __activetblptr 000000  
+          _RTC_Calendar_Write 7F2C                     ??_MSdelay 0003           ?_RTC_Calendar_Write 0003  
+                      _OSCCON 000FD3                        _SSPADD 000FC8                        _TRISB0 007C98  
+                      _TRISB1 007C99                        _SSPBUF 000FC9                __CFG_XINST$OFF 000000  
+              __CFG_STVREN$ON 000000          ??_RTC_Calendar_Write 0006                     ?_I2C_Init 0001  
+                   ?_I2C_Stop 0001                    __accesstop 0060       __end_of__initialization 7ECE  
+             __CFG_PBADEN$OFF 000000                 ___rparam_used 000001                __pcstackCOMRAM 0001  
+                  ??_I2C_Init 0001                    ??_I2C_Stop 0001      __size_of_RTC_Clock_Write 002C  
+                     _ACKSTAT 007E2E                       _SSPCON1 000FC6                       _SSPCON2 000FC5  
+                     _SSPSTAT 000FC7                       _MSdelay 7F84               __CFG_VREGEN$OFF 000000  
+                   _I2C_Ready 7ED4                     _I2C_Start 7EFC                     _I2C_Write 7EE6  
+                     __Hparam 0000                       __Lparam 0000                       __pcinit 7ECE  
+                     __ramtop 0800                       __ptext0 7FBA                       __ptext1 7F58  
+                     __ptext2 7F2C                       __ptext3 7EDC                       __ptext4 7EFC  
+                     __ptext5 7EE6                       __ptext6 7ED4                       __ptext7 7F84  
+                     __ptext8 7F12          end_of_initialization 7ECE                    ?_I2C_Ready 0001  
+                  ?_I2C_Start 0001                    ?_I2C_Write 0001            RTC_Clock_Write@min 0003  
+          RTC_Clock_Write@sec 0006             ??_RTC_Clock_Write 0006             __size_of_I2C_Init 001A  
+           __size_of_I2C_Stop 000A   __size_of_RTC_Calendar_Write 002C           start_initialization 7ECE  
+      RTC_Calendar_Write@date 0003        RTC_Calendar_Write@year 0005                   ??_I2C_Ready 0001  
+                 ??_I2C_Start 0002                   ??_I2C_Write 0001              __CFG_LPT1OSC$OFF 000000  
+                    ?_MSdelay 0001                      _I2C_Init 7F12                      _I2C_Stop 7EDC  
+                    MSdelay@i 0003                      MSdelay@j 0005              __CFG_WDTPS$32768 000000  
+             _RTC_Clock_Write 7F58  I2C_Start@slave_write_address 0002         RTC_Calendar_Write@day 0006  
+            __size_of_MSdelay 0036                      __Hrparam 0000                      __Lrparam 0000  
+               I2C_Write@data 0001                 __size_of_main 0046       __end_of_RTC_Clock_Write 7F84  
+                  MSdelay@val 0001    __end_of_RTC_Calendar_Write 7F58         __CFG_CPUDIV$OSC1_PLL2 000000  
+        RTC_Clock_Write@AM_PM 0005           __CFG_FOSC$INTOSC_EC 000000           RTC_Clock_Write@hour 0004  
+                 _SSPCON2bits 000FC5              ?_RTC_Clock_Write 0003  
